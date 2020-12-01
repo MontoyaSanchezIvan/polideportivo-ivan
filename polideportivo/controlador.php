@@ -109,11 +109,10 @@ class Controlador
 			$idUsuario = $_REQUEST["idUsuario"];
 			// Eliminamos el libro de la BD
 			$result = $this->usuario->delete($idUsuario);
-			if ($result == 0) {
-				$data['msjError'] = "Ha ocurrido un error al borrar el Usuario. Por favor, inténtelo de nuevo";
-			} else {
+			if ($result == 1) {
 				$data['msjInfo'] = "Usuario borrado con éxito";
-			}
+				//$data['msjError'] = "Ha ocurrido un error al borrar el Usuario. Por favor, inténtelo de nuevo";
+			} 
 			// Mostramos la lista de libros actualizada
 			$data['listaUsuarios'] = $this->usuario->getAll();
 			$this->vista->mostrar("usuario/listaUsuarios", $data);
@@ -122,9 +121,7 @@ class Controlador
 		}
 	}
 
-
-	
-	public function borrarUsuarioAjax(){
+	/*public function borrarUsuarioAjax(){
 		if ($this->seguridad->haySesionIniciada()) {
 			// Recuperamos el id del libro
 			$idUsuario = $_REQUEST["idUsuario"];
@@ -141,6 +138,20 @@ class Controlador
 		} else {
 			echo "-1";
 		}
+	}*/
+
+	public function modificarUsuario(){
+		$id = $_REQUEST['idUsuario'];
+		$email = $_REQUEST['email'];
+		$password = $_REQUEST['password'];
+		$nombre = $_REQUEST['nombre'];
+		$apellido1 = $_REQUEST['apellido1'];
+		$apellido2 = $_REQUEST['apellido2'];
+		$dni = $_REQUEST['dni'];
+		$imagen = $_REQUEST['imagen'];
+		$tipo = $_REQUEST['tipo'];
+		
+
 	}
 
 

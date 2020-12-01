@@ -66,6 +66,7 @@
     
 
         public function update() {
+           // $reesult = -> $this->db->manipulacion("UPDATE usuarios (");
         }
 
         public function delete($id)
