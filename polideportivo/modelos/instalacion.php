@@ -48,13 +48,19 @@ class Instalacion
     {
         $nombre = $_REQUEST["nombre"];
         $descripcion = $_REQUEST["descripcion"];
-        $imagen = $_REQUEST["imagen"];
+        $dir_subida = 'imgs/instalacion/';
+        $fichero_subido = $dir_subida . basename($_FILES['imagen']['name']);
         $precio = $_REQUEST["precio"];
-
-
-        $result = $this->db->manipulacion("INSERT INTO instalaciones (nombre,descripcion,imagen,precio) 
-                        VALUES ('$nombre','$descripcion', '$imagen', '$precio')");
+	
+        if (move_uploaded_file($_FILES['imagen']['tmp_name'], $fichero_subido)) {
+            $result = $this->db->manipulacion("INSERT INTO instalaciones (nombre,descripcion,precio,imagen) 
+                                             VALUES ('$nombre', '$descripcion', '$precio', '$fichero_subido')"); 
+        } else {
+            $result = -1;
+        }
+                
         return $result;
+        
     }
 
    
@@ -64,16 +70,18 @@ class Instalacion
         $idInstalacion = $_REQUEST["idInstalacion"];
         $nombre = $_REQUEST["nombre"];
         $descripcion = $_REQUEST["descripcion"];
-        $imagen = $_REQUEST["imagen"];
+        $dir_subida = 'imgs/instalacion/';
+        $fichero_subido = $dir_subida . basename($_FILES['imagen']['name']);
         $precio = $_REQUEST["precio"];
 
+        if (move_uploaded_file($_FILES['imagen']['tmp_name'], $fichero_subido)) {
+            $result = $this->db->manipulacion("UPDATE instalaciones SET nombre = '$nombre', descripcion = '$descripcion', precio = '$precio', imagen = '$fichero_subido' WHERE id = '$id'");
+        } else if($fichero_subido == "imgs/instalacion/"){
+            $result = $this->db->manipulacion("UPDATE instalaciones SET nombre = '$nombre', descripcion = '$descripcion', precio = '$precio' WHERE id = '$id'");
+        } else {
+            $result = -1;
+        }
 
-        $result = $this->db->manipulacion("UPDATE instalaciones SET
-								nombre = '$nombre',
-								descripcion = '$descripcion',
-								imagen = '$imagen',
-								precio = '$precio',
-                                WHERE idInstalacion = '$idInstalacion'");
         return $result;
     }
 

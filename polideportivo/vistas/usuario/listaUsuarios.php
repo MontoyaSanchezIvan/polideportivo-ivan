@@ -4,7 +4,7 @@
 	peticionAjax = new XMLHttpRequest();
 
 	function borrarPorAjax(idUsuario) {
-		if (confirm("¿Está seguro de que desea borrar el libro?")) {
+		if (confirm("¿Está seguro de que desea borrar el Usuario?")) {
 			idUsuarioGlobal = idUsuario;
 			peticionAjax.onreadystatechange = borradoUsuarioCompletado;
 			peticionAjax.open("GET", "index.php?action=borrarUsuarioAjax&idUsuario=" + idUsuario, true);
@@ -92,7 +92,7 @@ if (count($data['listaUsuarios']) > 0) {
 		echo "<td>" . $usuario->apellido1 . "</td>";
 		echo "<td>" . $usuario->apellido2 . "</td>";
 		echo "<td>" . $usuario->dni . "</td>";
-		echo "<td>" . $usuario->imagen . "</td>";
+		echo "<td> ". $usuario->imagen . "</td>";
 		echo "<td>" . $usuario->tipo . "</td>";
 		// Los botones "Modificar" y "Borrar" solo se muestran si hay una sesión iniciada
 		if ($this->seguridad->haySesionIniciada()) {

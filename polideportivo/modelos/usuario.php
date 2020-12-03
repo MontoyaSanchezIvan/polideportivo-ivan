@@ -57,16 +57,24 @@
             $apellido1 = $_REQUEST["apellido1"];
             $apellido2 = $_REQUEST["apellido2"];
             $dni = $_REQUEST["dni"];
-            $imagen = $_REQUEST["imagen"];
+            $dir_subida = 'imgs/usuario/';
+            $fichero_subido = $dir_subida . basename($_FILES['imagen']['name']);
+            $tipo = $_REQUEST["tipo"];
     
-            $result = $this->db->manipulacion("INSERT INTO usuarios (email,password,nombre,apellido1,apellido2,dni,imagen,tipo) 
-                            VALUES ('$email','$password', '$nombre', '$apellido1', '$apellido2', '$dni','$imagen','user')");
+            if (move_uploaded_file($_FILES['imagen']['tmp_name'], $fichero_subido)) {
+                $result = $this->db->manipulacion("INSERT INTO usuarios (email,password,nombre,apellido1,apellido2,dni,imagen,tipo) 
+                        VALUES ('$email', '$password', '$nombre', '$apellido1', '$apellido2', '$dni', '$fichero_subido', '$tipo')");        
+            } else {
+                 $result = -1;
+            }
+
+            
             return $result;
         }
     
 
         public function update() {
-           // $reesult = -> $this->db->manipulacion("UPDATE usuarios (");
+            $result = $this->db->manipulacion("UPDATE usuarios (");
         }
 
         public function delete($id)

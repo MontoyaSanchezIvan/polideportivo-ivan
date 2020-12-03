@@ -81,10 +81,10 @@ class Controlador
 
 			if ($result == 1) {
 
-				$data['msjInfo'] = "Libro insertado con éxito";
+				$data['msjInfo'] = "Usuario insertado con éxito";
 			} else {
 				// Si la inserción del libro ha fallado, mostramos mensaje de error
-				$data['msjError'] = "Ha ocurrido un error al insertar el libro. Por favor, inténtelo más tarde.";
+				$data['msjError'] = "Ha ocurrido un error al insertar el usuario. Por favor, inténtelo más tarde.";
 			}
 			// Terminamos mostrando la lista de libros actualizada
 			$data['listaUsuarios'] = $this->usuario->getAll();
@@ -187,11 +187,11 @@ if ($this->seguridad->haySesionIniciada()) {
 	$result = $this->instalacion->insert();
 
 	if ($result == 1) {
-
-		$data['msjInfo'] = "Instalacion insertada con éxito";
+		$ultimoId = $this->instalacion->getLastId();
+		$data['msjInfo'] = "Instalacion insertada con exito";
 	} else {
-		// Si la inserción del libro ha fallado, mostramos mensaje de error
-		$data['msjError'] = "Ha ocurrido un error al insertar la instalacion. Por favor, inténtelo más tarde.";
+		// Si la insercion de la incidencia ha fallado, mostramos mensaje de error
+		$data['msjError'] = "Ha ocurrido un error al insertar la instalacion. Por favor, intentelo mas tarde.";
 	}
 	// Terminamos mostrando la lista de libros actualizada
 	$data['listaInstalaciones'] = $this->instalacion->getAll();
@@ -202,7 +202,7 @@ if ($this->seguridad->haySesionIniciada()) {
 }
 
 
-public function borrarInstalaciones(){
+/*public function borrarInstalaciones(){
 
 	if ($this->seguridad->haySesionIniciada()) {
 			// Recuperamos el id del libro
@@ -220,7 +220,7 @@ public function borrarInstalaciones(){
 		} else {
 			$this->seguridad->errorAccesoNoPermitido();
 		}
-	}
+	}*/
 
 
 public function borrarInstalacionAjax(){
