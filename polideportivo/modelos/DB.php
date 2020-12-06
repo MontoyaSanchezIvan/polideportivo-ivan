@@ -31,6 +31,7 @@ class DB {
     }
 
     public function manipulacion($sql) {
+        var_dump($sql);
         $this->db->query($sql);
         return $this->db->affected_rows;
     }

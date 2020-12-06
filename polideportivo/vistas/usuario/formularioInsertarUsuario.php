@@ -3,7 +3,7 @@
 		echo "<h1>Alta de Usuarios</h1>";
 
 		// Creamos el formulario con los campos del libro
-		echo "<form action = 'index.php' method = 'get'>
+		echo "<form action = 'index.php' method = 'post' enctype='multipart/form-data'>
 			Email:<input type='text' name='email'><br>
 			Contraseña:<input type='text' name='password'><br>
 			Nombre:<input type='text' name='nombre'><br>

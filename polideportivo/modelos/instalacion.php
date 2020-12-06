@@ -25,7 +25,7 @@ class Instalacion
     public function get($id)
     {
         $result = $this->db->consulta("SELECT * FROM instalaciones
-                                            WHERE instalaciones.idInstalacion = '$id'");
+                                            WHERE idInstalacion = '$id'");
         return $result;
     }
 
@@ -51,10 +51,10 @@ class Instalacion
         $dir_subida = 'imgs/instalacion/';
         $fichero_subido = $dir_subida . basename($_FILES['imagen']['name']);
         $precio = $_REQUEST["precio"];
-	
+        
         if (move_uploaded_file($_FILES['imagen']['tmp_name'], $fichero_subido)) {
-            $result = $this->db->manipulacion("INSERT INTO instalaciones (nombre,descripcion,precio,imagen) 
-                                             VALUES ('$nombre', '$descripcion', '$precio', '$fichero_subido')"); 
+            $result = $this->db->manipulacion("INSERT INTO instalaciones (nombre,descripcion,imagen,precio) 
+                                             VALUES ('$nombre', '$descripcion', '$fichero_subido', '$precio')"); 
         } else {
             $result = -1;
         }
@@ -67,7 +67,7 @@ class Instalacion
     public function update()
     {
         // Primero, recuperamos todos los datos del formulario
-        $idInstalacion = $_REQUEST["idInstalacion"];
+        $id = $_REQUEST["idInstalacion"];
         $nombre = $_REQUEST["nombre"];
         $descripcion = $_REQUEST["descripcion"];
         $dir_subida = 'imgs/instalacion/';
@@ -75,9 +75,9 @@ class Instalacion
         $precio = $_REQUEST["precio"];
 
         if (move_uploaded_file($_FILES['imagen']['tmp_name'], $fichero_subido)) {
-            $result = $this->db->manipulacion("UPDATE instalaciones SET nombre = '$nombre', descripcion = '$descripcion', precio = '$precio', imagen = '$fichero_subido' WHERE id = '$id'");
+            $result = $this->db->manipulacion("UPDATE instalaciones SET nombre = '$nombre', descripcion = '$descripcion', precio = '$precio', imagen = '$fichero_subido' WHERE idInstalacion = '$id'");
         } else if($fichero_subido == "imgs/instalacion/"){
-            $result = $this->db->manipulacion("UPDATE instalaciones SET nombre = '$nombre', descripcion = '$descripcion', precio = '$precio' WHERE id = '$id'");
+            $result = $this->db->manipulacion("UPDATE instalaciones SET nombre = '$nombre', descripcion = '$descripcion', precio = '$precio' WHERE idInstalacion = '$id'");
         } else {
             $result = -1;
         }

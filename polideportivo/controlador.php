@@ -66,13 +66,13 @@ class Controlador
 
 	public function formularioInsertarUsuario(){
 
-			$this->vista->mostrar('usuario/formularioInsertarUsuario', $data);
+			$this->vista->mostrar('usuario/formularioInsertarUsuario');
 
 	}
 
 
 	public function insertarUsuario(){
-
+		
 		if ($this->seguridad->haySesionIniciada()) {
 			// Vamos a procesar el formulario de alta de libros
 			// Primero, recuperamos todos los datos del formulario
@@ -140,18 +140,35 @@ class Controlador
 		}
 	}*/
 
-	public function modificarUsuario(){
-		$id = $_REQUEST['idUsuario'];
-		$email = $_REQUEST['email'];
-		$password = $_REQUEST['password'];
-		$nombre = $_REQUEST['nombre'];
-		$apellido1 = $_REQUEST['apellido1'];
-		$apellido2 = $_REQUEST['apellido2'];
-		$dni = $_REQUEST['dni'];
-		$imagen = $_REQUEST['imagen'];
-		$tipo = $_REQUEST['tipo'];
-		
+	public function formularioModificarUsuario() {
+		if ($this->seguridad->haySesionIniciada()) {
 
+			$id = $_REQUEST["idUsuario"];
+			$data['usuario'] = $this->usuario->get($id);
+			$this->vista->mostrar('usuario/formularioModificarUsuario', $data);
+		} else {
+			$this->seguridad->errorAccesoNoPermitido();
+		}
+	}
+
+	public function modificarUsuario() {
+
+		if ($this->seguridad->haySesionIniciada()) {
+
+			//lanzamos la consulta pa la bd
+			$result = $this->usuario->update();
+			
+			if ($result == 1) {
+			// Si la modificación del libro ha funcionado, continuamos actualizando la tabla "escriben".
+				$data['msjInfo'] = "Usuario actualizado con éxito";
+			}else {
+				$data['msjError'] = "Error al actualizar el usuario";
+			}
+			$data['listaUsuarios'] = $this->usuario->getAll();
+			$this->vista->mostrar("usuario/mostrarUsuarios", $data);
+		} else {
+			$this->seguridad->errorAccesoNoPermitido();
+		}
 	}
 
 
@@ -164,7 +181,7 @@ class Controlador
 
 
 /**
-* Muestra una lista con todos los libros
+* Muestra una lista con todos las Instalaciones
 */
 public function mostrarListaInstalaciones(){
 
@@ -181,6 +198,8 @@ public function formularioInsertarInstalaciones(){
 
 
 public function insertarInstalacion(){
+	
+	var_dump($_FILES);
 
 if ($this->seguridad->haySesionIniciada()) {
 	
@@ -264,7 +283,7 @@ public function modificarInstalacion(){
 
 		if ($result == 1) {
 			// Si la modificación del libro ha funcionado, continuamos actualizando la tabla "escriben".
-			$idInstalacion = $_REQUEST["idInstalacion"];
+			$id= $_REQUEST["idInstalacion"];
 			
 		} else {
 			// Si la modificación del libro ha fallado, mostramos mensaje de error
