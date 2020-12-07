@@ -28,7 +28,7 @@
         public function get($id)
         {
             $result = $this->db->consulta("SELECT * FROM usuarios
-                                                WHERE usuarios.idUsuario = '$id'");
+                                                WHERE idUsuario = '$id'");
             return $result;
         }
 
@@ -37,8 +37,6 @@
         {
             $arrayResult = array();
             $result = $this->db->consulta("SELECT * FROM usuarios
-                                                /*INNER JOIN escriben ON libros.idLibro = escriben.idLibro
-                                                INNER JOIN personas ON escriben.idPersona = personas.idPersona*/
                                                 ORDER BY usuarios.idUsuario");
     
             return $result;

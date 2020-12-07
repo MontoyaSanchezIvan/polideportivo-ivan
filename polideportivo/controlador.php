@@ -89,7 +89,7 @@ class Controlador
 			// Terminamos mostrando la lista de libros actualizada
 			$data['listaUsuarios'] = $this->usuario->getAll();
 			$this->vista->mostrar("usuario/listaUsuarios", $data);
-		} else {
+			} else {
 			$this->seguridad->errorAccesoNoPermitido();
 		}
 	}
@@ -120,31 +120,13 @@ class Controlador
 			$this->seguridad->errorAccesoNoPermitido();
 		}
 	}
-
-	/*public function borrarUsuarioAjax(){
-		if ($this->seguridad->haySesionIniciada()) {
-			// Recuperamos el id del libro
-			$idUsuario = $_REQUEST["idUsuario"];
-			// Eliminamos el libro de la BD
-			$result = $this->usuario->delete($idUsuario);
-			if ($result == 0) {
-				// Error al borrar. Enviamos el código -1 al JS
-				echo "-1";
-			}
-			else {
-				// Borrado con éxito. Enviamos el id del libro a JS
-				echo $idUsuario;
-			}
-		} else {
-			echo "-1";
-		}
-	}*/
-
+	
 	public function formularioModificarUsuario() {
 		if ($this->seguridad->haySesionIniciada()) {
 
 			$id = $_REQUEST["idUsuario"];
 			$data['usuario'] = $this->usuario->get($id);
+			var_dump($data);
 			$this->vista->mostrar('usuario/formularioModificarUsuario', $data);
 		} else {
 			$this->seguridad->errorAccesoNoPermitido();
@@ -165,7 +147,7 @@ class Controlador
 				$data['msjError'] = "Error al actualizar el usuario";
 			}
 			$data['listaUsuarios'] = $this->usuario->getAll();
-			$this->vista->mostrar("usuario/mostrarUsuarios", $data);
+			$this->vista->mostrar("usuario/listaUsuarios", $data);
 		} else {
 			$this->seguridad->errorAccesoNoPermitido();
 		}
@@ -221,7 +203,7 @@ if ($this->seguridad->haySesionIniciada()) {
 }
 
 
-/*public function borrarInstalaciones(){
+public function borrarInstalaciones(){
 
 	if ($this->seguridad->haySesionIniciada()) {
 			// Recuperamos el id del libro
@@ -239,7 +221,7 @@ if ($this->seguridad->haySesionIniciada()) {
 		} else {
 			$this->seguridad->errorAccesoNoPermitido();
 		}
-	}*/
+	}
 
 
 public function borrarInstalacionAjax(){

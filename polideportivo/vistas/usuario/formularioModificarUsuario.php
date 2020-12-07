@@ -1,10 +1,11 @@
 <?php
 
-$usuario = $data['usuario'][0];
+$usuario = $data['usuario'];
+
 
 echo "<h1>Modificar Usuario</h1>";
 echo "<form action = 'index.php' method = 'POST' enctype='multipart/form-data'>
-        <input type='hidden' name='id' value='$usuario->id'>
+        <input type='hidden' name='idUsuario' value='$usuario->id'>
         E-mail:<input type='email' name='email' value='$usuario->email'><br>
         Contraseña:<input type='password' name='password' id='psswd1' value='$usuario->password'><br>
         Comprobar Contraseña:<input type='password' name='password' id='psswd2' value='$usuario->password'><span id='mensajeUsuario'></span><br>
