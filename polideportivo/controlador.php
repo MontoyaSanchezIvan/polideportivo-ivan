@@ -3,12 +3,12 @@ include_once("vista.php");
 include_once("modelos/seguridad.php");
 include_once("modelos/usuario.php");
 include_once("modelos/instalacion.php");
-
+include_once("modelos/reservas.php");
 
 class Controlador
 {
 
-	private $vista, $usuario,$seguridad,$instalacion;
+	private $vista, $usuario,$seguridad,$instalacion,$reserva;
 
 	/**
 	 * Constructor. Crea las variables de los modelos y la vista
@@ -19,7 +19,7 @@ class Controlador
 		$this->usuario = new Usuario();
 		$this->seguridad = new Seguridad();
 		$this->instalacion = new Instalacion();
-		
+		$this->reserva = new Rerservas();
 	}
 
 
@@ -153,7 +153,7 @@ class Controlador
 		}
 	}
 
-
+/************************************************************************************************************************* */
 
 
 
@@ -285,4 +285,85 @@ public function modificarInstalacion(){
 		$result = $this->usuario->existeNombre($nombreUsuario);
 		echo $result;
 	}
+
+/************************************************************************************************************************* */
+
+
+/************************************************* RESERVAS **********************************************************/
+
+	public function mostrarListaReservas(){
+
+		$data['listaRservas'] = $this->reserva->getAll();
+		$this->vista->mostrar("reserva/listaReservas", $data);
+	}
+
+	public function formularioInsertarReserva() {
+		if ($this->seguridad->haySesionIniciada()) {
+			$this->vista->mostrar('reserva/formularioInsertarReserva');
+		} else {
+			$this->seguridad->errorAccesoNoPermitido();
+		}
+	}
+
+	/*public function insertarReserva() {
+			
+		if ($this->seguridad->haySesionIniciada()) {
+			// Vamos a procesar el formulario de alta de usuario
+			// Primero, recuperamos todos los datos del formulario
+			// Ahora insertamos el usuario en la BD
+			$result = $this->reserva->insert();
+
+			// Lanzamos el INSERT contra la BD.
+			if ($result == 1) {
+				// Tenemos que averiguar que idusuario se ha asignado al usuario que acabamos de insertar
+				$ultimoId = $this->reserva->getLastId();
+				$data['msjInfo'] = "Reserva insertado con exito";
+			} else {
+				// Si la insercion del usuario ha fallado, mostramos mensaje de error
+				$data['msjError'] = "Ha ocurrido un error al insertar la reserva. Por favor, intentelo mas tarde.";
+			}
+			$dia = $this->reserva->getDay($id);
+			$data['listaReservas'] = $this->reserva->getAll();
+			$this->vista->mostrar("reserva/mostrarReservas", $data, $dia);
+		} else {
+			$this->seguridad->errorAccesoNoPermitido();
+		}
+			
+	}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

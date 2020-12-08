@@ -74,6 +74,7 @@ if (isset($_SESSION["idUsuario"])) {
 }
 
 echo "<p><a href='index.php?action=mostrarListaUsuarios'>Lista Ususarios</a></p>";
+echo "<p><a href='index.php?action=mostrarListaReservas'>Lista Reservas</a></p>";
 
 if (count($data['listaInstalaciones']) > 0) {
 

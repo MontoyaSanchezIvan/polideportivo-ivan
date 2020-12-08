@@ -80,6 +80,7 @@ echo "<form action='index.php'>
 			</form><br>";*/
 
 echo "<p><a href='index.php?action=mostrarListaInstalaciones'>Lista Instalaciones</a></p>";
+echo "<p><a href='index.php?action=mostrarListaReservas'>Lista Reservas</a></p>";
 
 if (count($data['listaUsuarios']) > 0) {
 
