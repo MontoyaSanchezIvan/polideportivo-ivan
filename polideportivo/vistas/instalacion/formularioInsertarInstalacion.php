@@ -4,10 +4,13 @@
 		echo "<h1>Alta instalacion</h1>";
 
 		// Creamos el formulario con los campos del libro
-		echo "<form action = 'index.php' method = 'POST' enctype='multipart/form-data'>
+		echo "<form class='altaInstalaciones' action = 'index.php' method = 'POST' enctype='multipart/form-data'>
 				Nombre:<input type='text' name='nombre'><br>
+				<br>
 				Descripcion:<input type='text' name='descripcion'><br>
-                Imagen:<input type='file' name='imagen'><br>
+				<br>
+				Imagen:<input type='file' name='imagen'><br>
+				<br>
                 Precio:<input type='int' name='precio'>€ por hora<br>";
 
 		// Finalizamos el formulario

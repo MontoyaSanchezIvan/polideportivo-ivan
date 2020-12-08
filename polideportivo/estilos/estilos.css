@@ -27,7 +27,15 @@ img{
     border: 2px outset black ;
 }
 
-#altaUsuarios{
+.altaUsuarios{
+    text-align: center;
+    background-color: lightcyan;
+    margin: 2% 35% 3% 35%;
+    padding: 2%;
+}
+
+.altaInstalaciones{
+
     text-align: center;
     background-color: lightcyan;
     margin: 2% 35% 3% 35%;
