@@ -203,7 +203,7 @@ if ($this->seguridad->haySesionIniciada()) {
 }
 
 
-public function borrarInstalaciones(){
+public function borrarInstalacion(){
 
 	if ($this->seguridad->haySesionIniciada()) {
 			// Recuperamos el id del libro

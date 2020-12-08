@@ -1,9 +1,9 @@
 <?php
-    $instalacion = $data['instalacion'][0];
+    $instalacion = $data['instalacion'];
 
     echo "<h1>Modificar Instalacion</h1>";
     echo "<form action = 'index.php' method = 'post' enctype='multipart/form-data'>
-            <input type='hidden' name='id' value='$instalacion->idInstalacion'>
+            <input type='hidden' name='idInstalacion' value='$instalacion->idInstalacion'>
             Nombre:<input type='text' name='nombre' value='$instalacion->nombre'><br>
             Descripcion:<input type='text' name='descripcion' value='$instalacion->descripcion'><br>
             Imagen:<input type='file' name='imagen' value='$instalacion->imagen'><br>
