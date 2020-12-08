@@ -26,32 +26,17 @@
 		}
 	}
 
-	// **** Petición y respuesta AJAX con jQuery ****
-
-	$(document).ready(function() {
-		$(".btnBorrar").click(function() {
-			if (confirm("¿Está seguro de que desea borrar la instalacion?")) {
-				$.get("index.php?action=borrarLibroAjax&idLibro=" + this.id, null, function(idLibroBorrado) {
-					if (idLibroBorrado == -1) {
-						$('#msjError').html("Ha ocurrido un error al borrar el libro");
-					} else {
-						$('#msjInfo').html("Libro borrado con éxito");
-						$('#libro' + idLibroBorrado).remove();
-					}
-				});
-			}
-		});
-	});
+		
 </script>
 
 
 
 <?php
 echo "<h1>Gestion Instalaciones</h1>";
+echo"<h2>Menú de opciones: Usuarios | Instalaciones | Reservas</h2>";
 // Mostramos info del usuario logueado (si hay alguno)
 if ($this->seguridad->haySesionIniciada()) {
-	echo "<p>Hola, " . $this->seguridad->get("nombreUsuario") . "</p>";
-	echo "<p align='right'><img width='50' src='" . $this->seguridad->get("fotografiaUsuario") . "'></p>";
+	echo "<p class ='nombre_usuario'>Hola, " . $this->seguridad->get("nombreUsuario") . "</p>";
 }
 // Mostramos mensaje de error o de información (si hay alguno)
 if (isset($data['msjError'])) {
@@ -79,7 +64,7 @@ echo "<p><a href='index.php?action=mostrarListaReservas'>Lista Reservas</a></p>"
 if (count($data['listaInstalaciones']) > 0) {
 
 	// Ahora, la tabla con los datos de los libros
-	echo "<table border ='1'>";
+	echo "<table class='tabla'  cellspacing='3' cellpadding='5' border='0' bgcolor='#A4C4D0' text-algin='centre'>";
 	foreach ($data['listaInstalaciones'] as $instalacion) {
 		echo "<tr id='libro" . $instalacion->idInstalacion . "'>";
 		echo "<td>" . $instalacion->nombre . "</td>";
@@ -89,8 +74,12 @@ if (count($data['listaInstalaciones']) > 0) {
 		
 		// Los botones "Modificar" y "Borrar" solo se muestran si hay una sesión iniciada
 		if ($this->seguridad->haySesionIniciada()) {
+
+			
 			echo "<td><a href='index.php?action=formularioModificarInstalacion&idInstalacion=" . $instalacion->idInstalacion . "'>Modificar</a></td>";
 			echo "<td><a href='index.php?action=borrarInstalacion&idInstalacion=" . $instalacion->idInstalacion . "'>Borrar Instalacion</a></td>";
+			
+			
 		}
 		echo "</tr>";
 	}

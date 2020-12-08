@@ -4,8 +4,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Gestión de polideportivo - Un ejemplo de aplicación web</title>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link rel="stylesheet" href="estilos/estilos.css">
 </head>
 
 <body>
-<h2>Menú de opciones: Usuarios/Mi Perfil | Instalaciones | Calendario</h2>
+

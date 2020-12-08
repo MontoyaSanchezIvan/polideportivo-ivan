@@ -39,6 +39,9 @@ function procesa_respuesta() {
 	Contraseña:<input type='password' name='pass'><br>
 	<input type='hidden' name='action' value='procesarLogin'>
 	<input type='submit'>
-	<p><a href='index.php?action=formularioInsertarUsuario'>Nuevo</a></p>;
+	
 </form>
+
+
+
 

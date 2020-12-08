@@ -1,0 +1,36 @@
+body{
+    background-color: #D8CEFF ;
+    text-align:  center;
+}
+
+.nombre_usuario{
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left:0.5%;
+    color: cornflowerblue;
+    size: 2px;
+   text-decoration: underline overline coral;
+}
+
+.tabla{
+    text-align: center;
+     margin: 0% 20% 0% 30%;
+}
+
+td{
+    text-align: center;
+}
+
+img{
+    width: 50px; 
+    height: 50px;
+    border: 2px outset black ;
+}
+
+#altaUsuarios{
+    text-align: center;
+    background-color: lightcyan;
+    margin: 2% 35% 3% 35%;
+    padding: 2%;
+}
+

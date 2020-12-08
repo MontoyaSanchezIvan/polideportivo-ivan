@@ -1,8 +1,9 @@
 <?php
     echo "<h1>Gestion de Usuarios</h1>";
+    echo"<h2>Menú de opciones: Usuarios | Instalaciones | Reservas</h2>";
     // Mostramos info del usuario logueado (si hay alguno)
     if ($this->seguridad->haySesionIniciada()) {
-        echo "<p>Hola, " . $this->seguridad->get("nombreUsuario") . "</p>";
+        echo "<p class ='nombre_usuario'>Hola, " . $this->seguridad->get("nombreUsuario") . "</p>";
         //echo "<p align='right'><img width='50' src='" . $this->seguridad->get("fotografiaUsuario") . "'></p>";
     }
     // Mostramos mensaje de error o de información (si hay alguno)

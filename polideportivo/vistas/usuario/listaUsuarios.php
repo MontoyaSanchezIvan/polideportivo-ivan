@@ -48,9 +48,10 @@
 
 <?php
 echo "<h1>Gestion de Usuarios</h1>";
+echo"<h2>Menú de opciones: Usuarios | Instalaciones | Reservas</h2>";
 // Mostramos info del usuario logueado (si hay alguno)
 if ($this->seguridad->haySesionIniciada()) {
-	echo "<p>Hola, " . $this->seguridad->get("nombreUsuario") . "</p>";
+	echo "<p class ='nombre_usuario'>Hola, " . $this->seguridad->get("nombreUsuario") . "</p>";
 	//echo "<p align='right'><img width='50' src='" . $this->seguridad->get("fotografiaUsuario") . "'></p>";
 }
 // Mostramos mensaje de error o de información (si hay alguno)
@@ -78,14 +79,21 @@ echo "<form action='index.php'>
            	<input type='text' name='textoBusqueda'>
 			<input type='submit' value='Buscar'>
 			</form><br>";*/
+echo"<div class=enlaces>";
 
-echo "<p><a href='index.php?action=mostrarListaInstalaciones'>Lista Instalaciones</a></p>";
-echo "<p><a href='index.php?action=mostrarListaReservas'>Lista Reservas</a></p>";
+	echo "<div class=enlaceInstalaciones
+			<p><a href='index.php?action=mostrarListaInstalaciones' text-align: left;>Lista Instalaciones</a></p>
+		</div>";
+
+	echo "<div class=enlaceReservas>
+			<p><a href='index.php?action=mostrarListaReservas' text-align: left;>Lista Reservas</a></p>
+		</div>";
+echo"</div>";
 
 if (count($data['listaUsuarios']) > 0) {
 
 	// Ahora, la tabla con los datos de los libros
-	echo "<table border ='1'>";
+	echo "<table class='tabla'  cellspacing='3' cellpadding='5' border='0' bgcolor='#A4C4D0' text-algin='centre' >";
 	foreach ($data['listaUsuarios'] as $usuario) {
 		echo "<tr id='usuario" . $usuario->idUsuario . "'>";
 		echo "<td>" . $usuario->email . "</td>";
@@ -97,8 +105,10 @@ if (count($data['listaUsuarios']) > 0) {
 		echo "<td>" . $usuario->tipo . "</td>";
 		// Los botones "Modificar" y "Borrar" solo se muestran si hay una sesión iniciada
 		if ($this->seguridad->haySesionIniciada()) {
-			echo "<td><a href='index.php?action=formularioModificarUsuario&idUsuario=" . $usuario->idUsuario . "'>Modificar</a></td>";
-			echo "<td><a href='index.php?action=borrarUsuario&idUsuario=" . $usuario->idUsuario . "'>Borrar Usuario</a></td>";
+
+			
+				echo "<td><a href='index.php?action=formularioModificarUsuario&idUsuario=" . $usuario->idUsuario . "'>Modificar</a></td>";
+				echo "<td><a href='index.php?action=borrarUsuario&idUsuario=" . $usuario->idUsuario . "'>Borrar Usuario</a></td>";
 			
 		}
 		echo "</tr>";
