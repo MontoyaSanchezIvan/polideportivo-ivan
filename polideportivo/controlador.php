@@ -293,19 +293,20 @@ public function modificarInstalacion(){
 
 	public function mostrarListaReservas(){
 
-		$data['listaRservas'] = $this->reserva->getAll();
+		$data['listaReservas'] = $this->reserva->getAll();
 		$this->vista->mostrar("reserva/listaReservas", $data);
 	}
 
 	public function formularioInsertarReserva() {
 		if ($this->seguridad->haySesionIniciada()) {
-			$this->vista->mostrar('reserva/formularioInsertarReserva');
+			$instalaciones = $this->instalacion->getAll();
+			$this->vista->mostrar('reserva/formularioInsertarReserva',$instalaciones);
 		} else {
 			$this->seguridad->errorAccesoNoPermitido();
 		}
 	}
 
-	/*public function insertarReserva() {
+	public function insertarReserva() {
 			
 		if ($this->seguridad->haySesionIniciada()) {
 			// Vamos a procesar el formulario de alta de usuario
@@ -322,16 +323,52 @@ public function modificarInstalacion(){
 				// Si la insercion del usuario ha fallado, mostramos mensaje de error
 				$data['msjError'] = "Ha ocurrido un error al insertar la reserva. Por favor, intentelo mas tarde.";
 			}
-			$dia = $this->reserva->getDay($id);
+			
 			$data['listaReservas'] = $this->reserva->getAll();
-			$this->vista->mostrar("reserva/mostrarReservas", $data, $dia);
+			$this->vista->mostrar("reserva/listaReservas", $data);
 		} else {
 			$this->seguridad->errorAccesoNoPermitido();
 		}
 			
+	}
+
+	/*public function borrarReserva(){
+		if ($this->seguridad->haySesionIniciada()) {
+			
+			$idReserva = $_REQUEST["idReserva"];
+			
+			$result = $this->reservas->delete($idReserva);
+				if ($result == 0) {
+					// Error al borrar. Enviamos el código -1 al JS
+					echo "-1";
+				}else {
+					// Borrado con éxito. Enviamos el id del libro a JS
+					echo $idReserva;
+				}
+			} else {
+			echo "-1";
+		}
 	}*/
 
-
+	public function modificarReserva(){
+		if ($this->seguridad->haySesionIniciada()) {
+	
+			$result = $this->instalacion->update();
+	
+			if ($result == 1) {
+				// Si la modificación del libro ha funcionado, continuamos actualizando la tabla "escriben".
+				$id= $_REQUEST["idInstalacion"];
+				
+			} else {
+				// Si la modificación del libro ha fallado, mostramos mensaje de error
+				$data['msjError'] = "Ha ocurrido un error al modificar la instalacion. Por favor, inténtelo más tarde.";
+			}
+			$data['listaInstalaciones'] = $this->instalacion->getAll();
+			$this->vista->mostrar("instalacion/listaInstalaciones", $data);
+		} else {
+			$this->seguridad->errorAccesoNoPermitido();
+		}
+	}
 
 
 

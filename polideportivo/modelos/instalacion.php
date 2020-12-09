@@ -37,7 +37,7 @@ class Instalacion
      */
     public function getAll()
     {
-        $arrayResult = array();
+        
         $result = $this->db->consulta("SELECT * FROM instalaciones");
         
         return $result;
@@ -100,6 +100,8 @@ class Instalacion
         $idInstalacion = $result->ultimoIdInstalacion;
         return $idInstalacion;
     }
+
+    
 
    
     public function busquedaAproximada($textoBusqueda)

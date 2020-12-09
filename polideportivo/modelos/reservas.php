@@ -1,5 +1,6 @@
 <?php
     include_once("DB.php");
+    
 
     class Rerservas {
         private $db;
@@ -21,7 +22,7 @@
         }
 
         public function getAll() {
-            $arrayResult = array();
+           
             $result = $this->db->consulta("SELECT * FROM reservas");
             
             return $result;
@@ -33,8 +34,9 @@
             $fecha = $_REQUEST["fecha"];
             $hora = $_REQUEST["hora"];
             $precio = $_REQUEST["precio"];
-	
-            $result = $this->db->manipulacion("INSERT INTO reservas (fecha,hora,precio) VALUES ('$fecha', '$hora', '$precio')");  
+            $idInstalacion = $_REQUEST["tipoInstalacion"];
+            
+            $result = $this->db->manipulacion("INSERT INTO reservas (fecha,hora,precio,id_instalacion) VALUES ('$fecha', '$hora', '$precio',$idInstalacion)");  
 
             return $result;
         }
@@ -61,6 +63,8 @@
             $id = $result->ultimoId;
             return $id;
         }
+
+        
 
 
 

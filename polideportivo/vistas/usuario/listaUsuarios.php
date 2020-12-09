@@ -94,24 +94,37 @@ if (count($data['listaUsuarios']) > 0) {
 
 	// Ahora, la tabla con los datos de los libros
 	echo "<table class='tabla'  cellspacing='3' cellpadding='5' border='0' bgcolor='#A4C4D0' text-algin='centre' >";
-	foreach ($data['listaUsuarios'] as $usuario) {
-		echo "<tr id='usuario" . $usuario->idUsuario . "'>";
-		echo "<td>" . $usuario->email . "</td>";
-		echo "<td>" . $usuario->nombre . "</td>";
-		echo "<td>" . $usuario->apellido1 . "</td>";
-		echo "<td>" . $usuario->apellido2 . "</td>";
-		echo "<td>" . $usuario->dni . "</td>";
-		echo "<td><img src=' ". $usuario->imagen . "'></td>";
-		echo "<td>" . $usuario->tipo . "</td>";
+		echo" <thead>
+				<tr>
+					<td style='font-size:18px'>Correo Usuario</td>
+					<td style='font-size:18px'>Nombre Usuario</td>
+					<td style='font-size:18px'>Primer Apellido Usuario</td>
+					<td style='font-size:18px'>Segundo Apellido Usuario </td>
+					<td style='font-size:18px'>DNI Usuario </td>
+					<td style='font-size:18px'>Imagen Usuario </td>
+					<td style='font-size:18px'>Tipo Usuario </td>
+				</tr>
+			</thead>
+			<tbody> "; 
+
+			foreach ($data['listaUsuarios'] as $usuario) {
+				echo "<tr id='usuario" . $usuario->idUsuario . "'>";
+					echo "<td>" . $usuario->email . "</td>";
+					echo "<td>" . $usuario->nombre . "</td>";
+					echo "<td>" . $usuario->apellido1 . "</td>";
+					echo "<td>" . $usuario->apellido2 . "</td>";
+					echo "<td>" . $usuario->dni . "</td>";
+					echo "<td><img src=' ". $usuario->imagen . "'></td>";
+					echo "<td>" . $usuario->tipo . "</td>";
 		// Los botones "Modificar" y "Borrar" solo se muestran si hay una sesión iniciada
 		if ($this->seguridad->haySesionIniciada()) {
 
-			
-				echo "<td><a href='index.php?action=formularioModificarUsuario&idUsuario=" . $usuario->idUsuario . "'>Modificar</a></td>";
-				echo "<td><a href='index.php?action=borrarUsuario&idUsuario=" . $usuario->idUsuario . "'>Borrar Usuario</a></td>";
+					echo "<td><a href='index.php?action=formularioModificarUsuario&idUsuario=" . $usuario->idUsuario . "'>Modificar</a></td>";
+					echo "<td><a href='index.php?action=borrarUsuario&idUsuario=" . $usuario->idUsuario . "'>Borrar Usuario</a></td>";
 			
 		}
-		echo "</tr>";
+				echo "</tr>";
+			echo"</tbody>";
 	}
 	echo "</table>";
 } else {

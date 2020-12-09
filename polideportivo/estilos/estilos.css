@@ -14,7 +14,7 @@ body{
 
 .tabla{
     text-align: center;
-     margin: 0% 20% 0% 30%;
+     margin: 0% 15% 0% 10%;
 }
 
 td{
@@ -30,7 +30,7 @@ img{
 .altaUsuarios{
     text-align: center;
     background-color: lightcyan;
-    margin: 2% 35% 3% 35%;
+    margin: 2% 35% 3% 25%;
     padding: 2%;
 }
 
@@ -38,7 +38,7 @@ img{
 
     text-align: center;
     background-color: lightcyan;
-    margin: 2% 35% 3% 35%;
+    margin: 2% 35% 3% 25%;
     padding: 2%;
 }
 

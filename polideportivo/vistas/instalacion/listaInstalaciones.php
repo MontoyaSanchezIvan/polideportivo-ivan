@@ -65,23 +65,32 @@ if (count($data['listaInstalaciones']) > 0) {
 
 	// Ahora, la tabla con los datos de los libros
 	echo "<table class='tabla'  cellspacing='3' cellpadding='5' border='0' bgcolor='#A4C4D0' text-algin='centre'>";
-	foreach ($data['listaInstalaciones'] as $instalacion) {
-		echo "<tr id='libro" . $instalacion->idInstalacion . "'>";
-		echo "<td>" . $instalacion->nombre . "</td>";
-		echo "<td>" . $instalacion->descripcion . "</td>";
-		echo "<td><img src='" . $instalacion->imagen . "'></td>";
-		echo "<td>" . $instalacion->precio . "</td>";
-		
-		// Los botones "Modificar" y "Borrar" solo se muestran si hay una sesión iniciada
-		if ($this->seguridad->haySesionIniciada()) {
-
-			
-			echo "<td><a href='index.php?action=formularioModificarInstalacion&idInstalacion=" . $instalacion->idInstalacion . "'>Modificar</a></td>";
-			echo "<td><a href='index.php?action=borrarInstalacion&idInstalacion=" . $instalacion->idInstalacion . "'>Borrar Instalacion</a></td>";
-			
-			
-		}
-		echo "</tr>";
+			echo" <thead>
+				<tr>
+					<td style='font-size:18px'>Nombre Instalacion</td>
+					<td style='font-size:18px'>Descripcion Instalacion de la reserva</td>
+					<td style='font-size:18px'>Imagen Instalacion</td>
+					<td style='font-size:18px'>Precio Instalacion / hora</td>
+				</tr>
+			</thead>
+			<tbody> "; 
+	
+				foreach ($data['listaInstalaciones'] as $instalacion) {
+				echo "<tr id='libro" . $instalacion->idInstalacion . "'>";
+					echo "<td>" . $instalacion->nombre . "</td>";
+					echo "<td>" . $instalacion->descripcion . "</td>";
+					echo "<td><img src='" . $instalacion->imagen . "'></td>";
+					echo "<td>" . $instalacion->precio . "</td>";
+					
+					// Los botones "Modificar" y "Borrar" solo se muestran si hay una sesión iniciada
+					if ($this->seguridad->haySesionIniciada()) {
+				
+						echo "<td><a href='index.php?action=formularioModificarInstalacion&idInstalacion=" . $instalacion->idInstalacion . "'>Modificar</a></td>";
+						echo "<td><a href='index.php?action=borrarInstalacion&idInstalacion=" . $instalacion->idInstalacion . "'>Borrar Instalacion</a></td>";
+								
+					}
+				echo "</tr>";
+			echo"</tbody>";
 	}
 	echo "</table>";
 } else {
