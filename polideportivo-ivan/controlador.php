@@ -332,7 +332,7 @@ public function modificarInstalacion(){
 			
 	}
 
-	/*public function borrarReserva(){
+	public function borrarReserva(){
 		if ($this->seguridad->haySesionIniciada()) {
 			
 			$idReserva = $_REQUEST["idReserva"];
@@ -343,12 +343,13 @@ public function modificarInstalacion(){
 					echo "-1";
 				}else {
 					// Borrado con éxito. Enviamos el id del libro a JS
-					echo $idReserva;
+					$data['listaReservas'] = $this->reserva->getAll();
+					$this->vista->mostrar("reserva/listaReservas", $data);
 				}
 			} else {
 			echo "-1";
 		}
-	}*/
+	}
 
 	public function modificarReserva(){
 		if ($this->seguridad->haySesionIniciada()) {
